@@ -4,7 +4,8 @@
     border-radius: 5px;
     overflow: hidden;   /*ñ deixa os valores passarem do tamanho do display*/
 
+    /* usando display grid*/
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-template-rows: 1fr 48px 48px 48px 48px 48px;  /* 1fr ocupa o espaço restante da height */
+    grid-template-columns: repeat(4, 25%); /* criar quartro colunas ocupando 25%*/
+    grid-template-rows: 1fr 48px 48px 48px 48px 48px;  /* a primeira linha '1fr' ocupa o espaço restante da height */
 }

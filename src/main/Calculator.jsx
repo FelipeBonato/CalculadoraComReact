@@ -4,7 +4,17 @@ import './Calculator.css'
 import Button from '../components/Button'
 import Display from '../components/Display'
 
+const initialState = {
+    displayValue: '0',
+    clearDisplay: false,
+    operation: null,
+    values: [0, 0],
+    current: 0      // atual
+}
+
 export default class Calculator extends Component {
+
+    state = { ...initialState } //criando clone do objeto initialState
 
     constructor(props) {
         super(props)
@@ -15,22 +25,30 @@ export default class Calculator extends Component {
     }
 
     clearMemory() {
-        console.log('limpar')
+        this.setState({ ...initialState })
     }
 
     setOperation(operation) {
         console.log(operation)
     }
+        //--------------------------------------- Nao entendi essa parte -------------------------
+    addDigit(n) {   
+        if (n === '.' && this.state.displayValue.includes('.')) {  //se usuário digitou "." e no display já há um ponto, saia da função
+            return
+    }
 
-    addDigit(n) {
-        console.log(n)
+        const clearDisplay = this.state.displayValue === '0'
+            || this.state.clearDisplay
+        const currentValue = clearDisplay ? '' : this.state.displayValue
+        const displayValue = currentValue + n
+        this.setState({ displayValue, clearDisplay: false })
     }
 
     render() {
         return(
             <div className="calculator">
-                <Display value={100} />
-                <Button label="AC" click={this.clearMemory} triple />  {/* ocupando três casas */}
+                <Display value={this.state.displayValue} />  
+                <Button className="button" label="AC" click={this.clearMemory} triple />  {/* ocupando três casas */}
                 <Button label="/" click={this.setOperation} operation />
                 <Button label="7" click={this.addDigit} />
                 <Button label="8" click={this.addDigit} />

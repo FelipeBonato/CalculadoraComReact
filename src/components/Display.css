@@ -1,5 +1,5 @@
 .display{
-    grid-column: span 4;
+    grid-column: span 4; /* display ocupará 4 colunas */
     background-color: #0022;
 
     display: flex;
